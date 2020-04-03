@@ -32,8 +32,9 @@ defmodule Downloader do
   def download(url, dir) do
     path = Path.join(dir, "%(uploader)s-%(title)s.%(ext)s")
 
-    'youtube-dl #{url} -o "#{path}" --extract-audio --audio-format mp3'
-    |> :os.cmd()
+    cmd = 
+      'youtube-dl #{url} -o "#{path}" --extract-audio --audio-format mp3'
+    :os.cmd(cmd)
 
     IO.puts("Downloaded #{url}")
   end
